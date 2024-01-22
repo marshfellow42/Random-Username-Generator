@@ -106,61 +106,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
         int length = Integer.valueOf(jTextField1.getText());
 
         String[] final_name = {};
-        
+
         Random rnd = new Random();
 
         if ((numbers_btn.isSelected() && symbols_btn.isSelected()) || (uppercase_btn.isSelected() && numbers_btn.isSelected()) || (uppercase_btn.isSelected() && symbols_btn.isSelected())) {
-            
             JOptionPane.showMessageDialog(null, "You can't select more than one option at a time");
-            
-        } else if (uppercase_btn.isSelected()) {
-           
-            for (int i = 0; i < length; i++) {
-                int randomIndex = rnd.nextInt(26);
-                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
-                final_name = ArrayUtils.add(final_name, uppercase[randomIndex]);
-            }
-
-            Collections.shuffle(Arrays.asList(final_name));
-            String joined_text = String.join("", final_name);
-            jLabel2.setText(joined_text.substring(0, length));
-
-        } else if (numbers_btn.isSelected()) {
-            
-            for (int i = 0; i < length; i++) {
-                int randomIndex = rnd.nextInt(26);
-                int randomIndexNumber = rnd.nextInt(10);
-                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
-                final_name = ArrayUtils.add(final_name, numbers[randomIndexNumber]);
-            }
-
-            Collections.shuffle(Arrays.asList(final_name));
-            String joined_text = String.join("", final_name);
-            jLabel2.setText(joined_text.substring(0, length));
-            
-        } else if (symbols_btn.isSelected()) {
-            
-            for (int i = 0; i < length; i++) {
-                int randomIndex = rnd.nextInt(26);
-                int randomIndexSymbols = rnd.nextInt(25);
-                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
-                final_name = ArrayUtils.add(final_name, symbols[randomIndexSymbols]);
-            }
-
-            Collections.shuffle(Arrays.asList(final_name));
-            String joined_text = String.join("", final_name);
-            jLabel2.setText(joined_text.substring(0, length));
-            
         } else {
-
             for (int i = 0; i < length; i++) {
                 int randomIndex = rnd.nextInt(26);
-                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
+
+                if (uppercase_btn.isSelected()) {
+                    final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
+                    final_name = ArrayUtils.add(final_name, uppercase[randomIndex]);
+                } else if (numbers_btn.isSelected()) {
+                    int randomIndexNumber = rnd.nextInt(10);
+                    final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
+                    final_name = ArrayUtils.add(final_name, numbers[randomIndexNumber]);
+                } else if (symbols_btn.isSelected()) {
+                    int randomIndexSymbols = rnd.nextInt(25);
+                    final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
+                    final_name = ArrayUtils.add(final_name, symbols[randomIndexSymbols]);
+                } else {
+                    final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
+                }
             }
 
             Collections.shuffle(Arrays.asList(final_name));
             String joined_text = String.join("", final_name);
-            jLabel2.setText(joined_text);
+            jLabel2.setText(joined_text.substring(0, length));
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
