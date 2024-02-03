@@ -36,14 +36,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        uppercase_btn = new javax.swing.JCheckBox();
-        numbers_btn = new javax.swing.JCheckBox();
-        symbols_btn = new javax.swing.JCheckBox();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        uppercase_btn = new javax.swing.JRadioButton();
+        numbers_btn = new javax.swing.JRadioButton();
+        symbols_btn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -54,21 +55,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Insert how many characters you want to insert");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(80, 20, 405, 24);
-
-        uppercase_btn.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        uppercase_btn.setText("Uppercase");
-        jPanel1.add(uppercase_btn);
-        uppercase_btn.setBounds(392, 76, 117, 28);
-
-        numbers_btn.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        numbers_btn.setText("Numbers");
-        jPanel1.add(numbers_btn);
-        numbers_btn.setBounds(392, 114, 103, 28);
-
-        symbols_btn.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        symbols_btn.setText("Symbols");
-        jPanel1.add(symbols_btn);
-        symbols_btn.setBounds(392, 156, 100, 28);
 
         jTextField1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -92,6 +78,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(3, 320, 610, 84);
 
+        buttonGroup1.add(uppercase_btn);
+        uppercase_btn.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        uppercase_btn.setText("Uppercase");
+        jPanel1.add(uppercase_btn);
+        uppercase_btn.setBounds(390, 80, 120, 20);
+
+        buttonGroup1.add(numbers_btn);
+        numbers_btn.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        numbers_btn.setText("Numbers");
+        jPanel1.add(numbers_btn);
+        numbers_btn.setBounds(390, 115, 103, 29);
+
+        buttonGroup1.add(symbols_btn);
+        symbols_btn.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        symbols_btn.setText("Symbols");
+        symbols_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                symbols_btnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(symbols_btn);
+        symbols_btn.setBounds(390, 155, 100, 30);
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 615, 454));
 
         pack();
@@ -109,34 +118,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Random rnd = new Random();
 
-        if ((numbers_btn.isSelected() && symbols_btn.isSelected()) || (uppercase_btn.isSelected() && numbers_btn.isSelected()) || (uppercase_btn.isSelected() && symbols_btn.isSelected())) {
-            JOptionPane.showMessageDialog(null, "You can't select more than one option at a time");
-        } else {
-            for (int i = 0; i < length; i++) {
-                int randomIndex = rnd.nextInt(26);
+        for (int i = 0; i < length; i++) {
+            int randomIndex = rnd.nextInt(26);
 
-                if (uppercase_btn.isSelected()) {
-                    final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
-                    final_name = ArrayUtils.add(final_name, uppercase[randomIndex]);
-                } else if (numbers_btn.isSelected()) {
-                    int randomIndexNumber = rnd.nextInt(10);
-                    final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
-                    final_name = ArrayUtils.add(final_name, numbers[randomIndexNumber]);
-                } else if (symbols_btn.isSelected()) {
-                    int randomIndexSymbols = rnd.nextInt(25);
-                    final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
-                    final_name = ArrayUtils.add(final_name, symbols[randomIndexSymbols]);
-                } else {
-                    final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
-                }
+            if (uppercase_btn.isSelected()) {
+                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
+                final_name = ArrayUtils.add(final_name, uppercase[randomIndex]);
+            } else if (numbers_btn.isSelected()) {
+                int randomIndexNumber = rnd.nextInt(10);
+                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
+                final_name = ArrayUtils.add(final_name, numbers[randomIndexNumber]);
+            } else if (symbols_btn.isSelected()) {
+                int randomIndexSymbols = rnd.nextInt(25);
+                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
+                final_name = ArrayUtils.add(final_name, symbols[randomIndexSymbols]);
+            } else {
+                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
             }
-
-            Collections.shuffle(Arrays.asList(final_name));
-            String joined_text = String.join("", final_name);
-            jLabel2.setText(joined_text.substring(0, length));
         }
 
+        Collections.shuffle(Arrays.asList(final_name));
+        String joined_text = String.join("", final_name);
+        jLabel2.setText(joined_text.substring(0, length));
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void symbols_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_symbols_btnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_symbols_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,13 +191,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JCheckBox numbers_btn;
-    private javax.swing.JCheckBox symbols_btn;
-    private javax.swing.JCheckBox uppercase_btn;
+    private javax.swing.JRadioButton numbers_btn;
+    private javax.swing.JRadioButton symbols_btn;
+    private javax.swing.JRadioButton uppercase_btn;
     // End of variables declaration//GEN-END:variables
 }
