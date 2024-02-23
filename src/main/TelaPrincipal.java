@@ -45,24 +45,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         uppercase_btn = new javax.swing.JRadioButton();
         numbers_btn = new javax.swing.JRadioButton();
         symbols_btn = new javax.swing.JRadioButton();
+        lowercase_btn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 27)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Insert how many characters you want to insert");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(80, 20, 405, 24);
+        jLabel1.setBounds(15, 20, 590, 37);
 
         jTextField1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(240, 90, 118, 61);
+        jTextField1.setBounds(240, 90, 118, 70);
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
-        jButton1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Convert");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,22 +78,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(3, 320, 610, 84);
+        jLabel2.setBounds(3, 320, 600, 84);
 
         buttonGroup1.add(uppercase_btn);
-        uppercase_btn.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        uppercase_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         uppercase_btn.setText("Uppercase");
         jPanel1.add(uppercase_btn);
-        uppercase_btn.setBounds(390, 80, 120, 20);
+        uppercase_btn.setBounds(390, 110, 120, 20);
 
         buttonGroup1.add(numbers_btn);
-        numbers_btn.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        numbers_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         numbers_btn.setText("Numbers");
         jPanel1.add(numbers_btn);
-        numbers_btn.setBounds(390, 115, 103, 29);
+        numbers_btn.setBounds(390, 140, 100, 30);
 
         buttonGroup1.add(symbols_btn);
-        symbols_btn.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        symbols_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         symbols_btn.setText("Symbols");
         symbols_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +101,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(symbols_btn);
-        symbols_btn.setBounds(390, 155, 100, 30);
+        symbols_btn.setBounds(390, 180, 94, 30);
+
+        buttonGroup1.add(lowercase_btn);
+        lowercase_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lowercase_btn.setText("Lowercase");
+        jPanel1.add(lowercase_btn);
+        lowercase_btn.setBounds(390, 70, 120, 30);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 615, 454));
 
@@ -132,6 +140,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 int randomIndexSymbols = rnd.nextInt(25);
                 final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
                 final_name = ArrayUtils.add(final_name, symbols[randomIndexSymbols]);
+            } else if (lowercase_btn.isSelected()) {
+                final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
             } else {
                 final_name = ArrayUtils.add(final_name, lowercase[randomIndex]);
             }
@@ -197,6 +207,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton lowercase_btn;
     private javax.swing.JRadioButton numbers_btn;
     private javax.swing.JRadioButton symbols_btn;
     private javax.swing.JRadioButton uppercase_btn;
